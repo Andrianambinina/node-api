@@ -10,4 +10,17 @@ router.get("/", (req, res) => {
     })
 });
 
+router.post("/", (req, res) => {
+    // console.log(req.body)
+    const newRecord = new PostsModel({
+        author: req.body.author,
+        message: req.body.message
+    });
+
+    newRecord.save((err, docs) => {
+        if (!err) res.send(docs);
+        else console.log("Error: " + err);
+    });
+});
+
 module.exports = router;
